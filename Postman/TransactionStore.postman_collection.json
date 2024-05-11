@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "576061fb-74b9-41b8-936f-cde7d1b88da4",
+		"name": "TransactionStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28533717"
+	},
+	"item": [
+		{
+			"name": "GetByCurrency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7210/api/v1/Transaction/GetByCurrency?CurrencyCode=USD",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"v1",
+						"Transaction",
+						"GetByCurrency"
+					],
+					"query": [
+						{
+							"key": "CurrencyCode",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByCurrency?CurrencyCode=THB",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByCurrency"
+							],
+							"query": [
+								{
+									"key": "CurrencyCode",
+									"value": "THB"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:31:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"Inv00001\",\n        \"payment\": \"220.00 THB\",\n        \"status\": \"D\"\n    },\n    {\n        \"id\": \"Inv00002\",\n        \"payment\": \"11000.00 THB\",\n        \"status\": \"D\"\n    }\n]"
+				},
+				{
+					"name": "fail validate 01",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByCurrency",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByCurrency"
+							],
+							"query": [
+								{
+									"key": "CurrencyCode",
+									"value": "USD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:38:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"CurrencyCode\": [\n        \"The CurrencyCode field is required.\"\n    ]\n}"
+				},
+				{
+					"name": "fail validate 02",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByCurrency?CurrencyCode=aaa",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByCurrency"
+							],
+							"query": [
+								{
+									"key": "CurrencyCode",
+									"value": "aaa"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:32:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"CurrencyCode\": [\n        \"Invalid currency code.\"\n    ]\n}"
+				},
+				{
+					"name": "error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByCurrency?CurrencyCode=USD",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByCurrency"
+							],
+							"query": [
+								{
+									"key": "CurrencyCode",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:46:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Error occurred internally. Please contact administrator for support.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7210/api/v1/Transaction/GetByDate?StartDate=2019-02-22&EndDate=2019-02-22 14:00:00",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"v1",
+						"Transaction",
+						"GetByDate"
+					],
+					"query": [
+						{
+							"key": "StartDate",
+							"value": "2019-02-22"
+						},
+						{
+							"key": "EndDate",
+							"value": "2019-02-22 14:00:00"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "fail validate 01",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByDate",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByDate"
+							],
+							"query": [
+								{
+									"key": "StartDate",
+									"value": "USD",
+									"disabled": true
+								},
+								{
+									"key": "EndDate",
+									"value": "dd",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:40:14 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"EndDate\": [\n        \"The EndDate field is required.\"\n    ],\n    \"StartDate\": [\n        \"The StartDate field is required.\"\n    ]\n}"
+				},
+				{
+					"name": "fail validate 02",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByDate?StartDate=dd&EndDate=USD",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByDate"
+							],
+							"query": [
+								{
+									"key": "StartDate",
+									"value": "dd"
+								},
+								{
+									"key": "EndDate",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:40:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"EndDate\": [\n        \"The value 'dd' is not valid for EndDate.\"\n    ],\n    \"StartDate\": [\n        \"The value 'USD' is not valid for StartDate.\"\n    ]\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByDate?StartDate=2019-02-22&EndDate=2019-02-22 14:00:00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByDate"
+							],
+							"query": [
+								{
+									"key": "StartDate",
+									"value": "2019-02-22"
+								},
+								{
+									"key": "EndDate",
+									"value": "2019-02-22 14:00:00"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:42:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"Invoice0000001\",\n        \"payment\": \"1100.00 EUR\",\n        \"status\": \"A\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GetByStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7210/api/v1/Transaction/GetByStatus?Status=I",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"v1",
+						"Transaction",
+						"GetByStatus"
+					],
+					"query": [
+						{
+							"key": "Status",
+							"value": "I"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByStatus?Status=D",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByStatus"
+							],
+							"query": [
+								{
+									"key": "Status",
+									"value": "D"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:34:49 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"Invoice0000002\",\n        \"payment\": \"330.00 EUR\",\n        \"status\": \"D\"\n    },\n    {\n        \"id\": \"Inv00001\",\n        \"payment\": \"220.00 THB\",\n        \"status\": \"D\"\n    },\n    {\n        \"id\": \"Inv00002\",\n        \"payment\": \"11000.00 THB\",\n        \"status\": \"D\"\n    }\n]"
+				},
+				{
+					"name": "fail validate 01",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByStatus",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByStatus"
+							],
+							"query": [
+								{
+									"key": "Status",
+									"value": "I",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:37:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Status\": [\n        \"The Status field is required.\"\n    ]\n}"
+				},
+				{
+					"name": "fail validate 02",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/api/v1/Transaction/GetByStatus?Status=I",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"v1",
+								"Transaction",
+								"GetByStatus"
+							],
+							"query": [
+								{
+									"key": "Status",
+									"value": "I"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 18:35:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Status\": [\n        \"Invalid status.\"\n    ]\n}"
+				}
+			]
+		}
+	]
+}
