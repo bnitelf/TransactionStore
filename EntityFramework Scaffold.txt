@@ -1,0 +1,1 @@
+dotnet-ef dbcontext scaffold "Data Source=localhost\SQLEXPRESS;Initial Catalog=TransactionStore;Persist Security Info=True;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -p TransactionStore --output-dir Models/DBModel/TransactionStore --context TransactionStoreEntities --use-database-names --force --no-onconfiguring
