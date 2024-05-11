@@ -1,0 +1,68 @@
+﻿@model TransactionStore.Models.ViewModel.Home.UploadViewModel
+@{
+    ViewData["Title"] = "Upload";
+}
+
+@section Style {
+    <style>
+        th:nth-child(1) {
+           width: 50px; 
+        }
+    </style>
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (Model.HasProcessed)
+{
+    if (Model.IsSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            File uploaded successfully.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            File upload failed. Please see reason below.
+        </div>
+    }
+}
+<form method="post" asp-controller="Home" asp-action="FileUpload" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="file" name="TransactionFile" class="form-control" />
+            @* <span asp-validation-for="TransactionFile"></span> *@
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <button type="submit" name="Upload" class="btn btn-primary">Upload</button>
+        </div>
+    </div>
+</form>
+@if (Model.HasProcessed && !Model.IsSuccess)
+{
+    // loop display Model.ListRowErrors in a table
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <table class="table table-bordered table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Row</th>
+                        <th scope="col">Error Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListRowErrors)
+                    {
+                        <tr>
+                            <td>@item.Row</td>
+                            <td>@item.ErrorMessage</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

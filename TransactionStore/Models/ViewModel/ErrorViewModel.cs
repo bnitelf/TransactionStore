@@ -1,4 +1,4 @@
-namespace TransactionStore.Models
+namespace TransactionStore.Models.ViewModel
 {
     public class ErrorViewModel
     {
