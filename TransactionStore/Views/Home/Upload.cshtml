@@ -21,10 +21,16 @@
             File uploaded successfully.
         </div>
     }
-    else
+    else if (!Model.IsValidationSuccess && Model.ListRowErrors.Count > 0)
     {
         <div class="alert alert-danger" role="alert">
             File upload failed. Please see reason below.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            File upload failed. Please contact administrator for ticket support. RequestId = @Model.RequestId
         </div>
     }
 }
@@ -42,7 +48,7 @@
         </div>
     </div>
 </form>
-@if (Model.HasProcessed && !Model.IsSuccess)
+@if (Model.HasProcessed && !Model.IsValidationSuccess)
 {
     // loop display Model.ListRowErrors in a table
     <div class="row mt-2">

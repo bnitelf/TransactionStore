@@ -53,7 +53,12 @@ namespace TransactionStore.Controllers
             List<string> listAllowExtensions = new List<string>() { ".csv", ".xml" };
             string uploadedfileExtension = Path.GetExtension(transactionFile.FileName).ToLower();
 
-            if (!listAllowExtensions.Contains(uploadedfileExtension))
+
+            if (string.IsNullOrEmpty(uploadedfileExtension))
+            {
+                ModelState.AddModelError("", "Unknown format.");
+            }
+            else if (!listAllowExtensions.Contains(uploadedfileExtension))
             {
                 ModelState.AddModelError("", "Invalid file type. (support csv, xml)");
             }
@@ -61,7 +66,7 @@ namespace TransactionStore.Controllers
             int allowedFileSize = 1_048_576; // 1MB
             if (transactionFile.Length > allowedFileSize)
             {
-                ModelState.AddModelError("", "The file is too large. (support up to 2MB)");
+                ModelState.AddModelError("", "The file is too large. (support up to 1MB)");
             }
 
             if (!ModelState.IsValid)
@@ -77,7 +82,9 @@ namespace TransactionStore.Controllers
             UploadToDbResult result = _transactionService.UploadToDb(uploadedfileExtension, fileContent);
 
             uploadViewModel.HasProcessed = true;
+            uploadViewModel.RequestId = result.RequestId;
             uploadViewModel.IsSuccess = result.IsSuccess;
+            uploadViewModel.IsValidationSuccess = result.IsValidationSuccess;
             uploadViewModel.ListRowErrors = result.ValidateResult.ListRowErrors;
 
             return View("Upload", uploadViewModel);

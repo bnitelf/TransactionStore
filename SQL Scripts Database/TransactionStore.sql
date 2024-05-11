@@ -1,5 +1,3 @@
-
-
 CREATE DATABASE TransactionStore
     COLLATE SQL_Latin1_General_CP1_CI_AS;
 GO
@@ -21,5 +19,15 @@ CREATE TABLE [PaymentTransaction] (
     CONSTRAINT TransactionID_UNIQ UNIQUE(TransactionId) 
 );
 
+CREATE TABLE [PaymentTransactionUploadLog] (
+    Id bigint IDENTITY(1,1),
+    RequestId nvarchar(36) NOT NULL, -- in case we want to store multiple message per RequestId so don't make it unique.
+    CreateDt datetime2(7) NOT NULL,
+    ErrorMessage nvarchar(max) NOT NULL,
+
+    PRIMARY KEY (Id)
+);
+
 -- DROP TABLE [PaymentTransaction];
+-- DROP TABLE [PaymentTransactionUploadLog];
 

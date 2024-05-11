@@ -17,6 +17,7 @@ namespace TransactionStore.Models.DBModel.TransactionStore
         }
 
         public virtual DbSet<PaymentTransaction> PaymentTransactions { get; set; } = null!;
+        public virtual DbSet<PaymentTransactionUploadLog> PaymentTransactionUploadLogs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +39,13 @@ namespace TransactionStore.Models.DBModel.TransactionStore
                 entity.Property(e => e.StatusRaw).HasMaxLength(50);
 
                 entity.Property(e => e.TransactionId).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<PaymentTransactionUploadLog>(entity =>
+            {
+                entity.ToTable("PaymentTransactionUploadLog");
+
+                entity.Property(e => e.RequestId).HasMaxLength(36);
             });
 
             OnModelCreatingPartial(modelBuilder);
