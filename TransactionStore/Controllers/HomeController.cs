@@ -58,7 +58,7 @@ namespace TransactionStore.Controllers
                 ModelState.AddModelError("", "Invalid file type. (support csv, xml)");
             }
 
-            int allowedFileSize = 2_097_152; // 2MB
+            int allowedFileSize = 1_048_576; // 1MB
             if (transactionFile.Length > allowedFileSize)
             {
                 ModelState.AddModelError("", "The file is too large. (support up to 2MB)");
