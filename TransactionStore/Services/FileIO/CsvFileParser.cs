@@ -11,9 +11,6 @@ namespace TransactionStore.Services.FileIO
     {
         public List<InputTransaction> Parse(Stream content)
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-            //config.Register<MyClassMap>();
-
             using (var reader = new StreamReader(content))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
