@@ -1,0 +1,3 @@
+TransactionId,Amount,CurrencyCode,TransactionDate,Status
+"","0","YYY","20/02/2019 12:33:16","Approvedd"
+"Invoice0000002_Length_moooooooooooooooooore_than_50","300.00","USD","21/02/2019 02:04:59","Failed"
