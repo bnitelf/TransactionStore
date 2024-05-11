@@ -1,7 +1,12 @@
+using TransactionStore.Services.ViewService.Transaction;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register services (DI)
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿namespace TransactionStore.Models.ViewModel.Home
+﻿using TransactionStore.Models.ServiceModel.Validation;
+
+namespace TransactionStore.Models.ViewModel.Home
 {
     public class UploadViewModel
     {

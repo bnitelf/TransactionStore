@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Models\DBModel\TransactionStore\" />
+    <Folder Include="Models\XmlModel\Transaction\" />
+    <Folder Include="Services\Conversion\" />
   </ItemGroup>
 
   <ItemGroup>

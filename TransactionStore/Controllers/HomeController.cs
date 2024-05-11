@@ -2,18 +2,24 @@
 using System.Diagnostics;
 using System.Text;
 using System.Xml;
+using TransactionStore.Models.ServiceModel.Transaction;
+using TransactionStore.Models.ServiceModel.Validation;
 using TransactionStore.Models.ViewModel;
 using TransactionStore.Models.ViewModel.Home;
+using TransactionStore.Services.ViewService.Transaction;
 
 namespace TransactionStore.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITransactionService _transactionService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger
+            , ITransactionService transactionService)
         {
             _logger = logger;
+            _transactionService = transactionService;
         }
 
         public IActionResult Index()
@@ -62,15 +68,17 @@ namespace TransactionStore.Controllers
                 return View("Upload", uploadViewModel);
 
             
-            var sb = new StringBuilder();
-            using var streamReader = new StreamReader(transactionFile.OpenReadStream());
-            sb.AppendLine(streamReader.ReadToEnd());
+            //var sb = new StringBuilder();
+            //using var streamReader = new StreamReader();
+            //sb.AppendLine(streamReader.ReadToEnd());
+
+            Stream fileContent = transactionFile.OpenReadStream();
+
+            UploadToDbResult result = _transactionService.UploadToDb(uploadedfileExtension, fileContent);
 
             uploadViewModel.HasProcessed = true;
-            uploadViewModel.IsSuccess = false;
-            uploadViewModel.ListRowErrors = new List<RowError>();
-            uploadViewModel.ListRowErrors.Add(new RowError { Row = 1, ErrorMessage = "Invalid data" });
-            uploadViewModel.ListRowErrors.Add(new RowError { Row = 2, ErrorMessage = "Invalid data" });
+            uploadViewModel.IsSuccess = result.IsSuccess;
+            uploadViewModel.ListRowErrors = result.ValidateResult.ListRowErrors;
 
             return View("Upload", uploadViewModel);
         }
