@@ -1,0 +1,18 @@
+<Transactions>
+	<Transaction id="Inv00001">
+		<TransactionDate>2019-01-25T13:45:10</TransactionDate>
+		<PaymentDetails>
+			<Amount>220.00</Amount>
+			<CurrencyCode>THB</CurrencyCode>
+		</PaymentDetails>
+		<Status>Done</Status>
+	</Transaction>
+	<Transaction id="Inv00002">
+		<TransactionDate>2019-01-25T16:09:15</TransactionDate>
+		<PaymentDetails>
+			<Amount>11000.00</Amount>
+			<CurrencyCode>THB</CurrencyCode>
+		</PaymentDetails>
+		<Status>Done</Status>
+	</Transaction>
+</Transactions>
