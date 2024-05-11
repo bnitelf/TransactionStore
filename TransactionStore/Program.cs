@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TransactionStore.Models.DBModel.TransactionStore;
+using TransactionStore.Services.ApiService.Transaction;
 using TransactionStore.Services.ViewService.Transaction;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<TransactionStoreEntities>(options =>
 
 // Register services (DI)
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ITransactionApiService, TransactionApiService>();
 
 var app = builder.Build();
 
@@ -35,8 +37,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapAreaControllerRoute(
+        name: "Api",
+        areaName: "api",
+        pattern: "api/v1/{controller}/{action}/{id?}",
+        defaults: new { area = "api" }
+   );
+});
 
 app.Run();
